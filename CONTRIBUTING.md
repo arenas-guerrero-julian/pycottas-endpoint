@@ -9,8 +9,8 @@ This section is for if you want to run the package in development, and get invol
 Clone the repository:
 
 ```sh
-git clone https://github.com/vemonet/rdflib-endpoint
-cd rdflib-endpoint
+git clone https://github.com/arenas-guerrero-julian/pycottas-endpoint
+cd pycottas-endpoint
 ```
 
 ## 🪝 Install pre-commit hooks
@@ -77,6 +77,6 @@ The deployment of new releases is done automatically by a GitHub Action workflow
    uvx hatch version fix
    ```
 
-3. Commit the new version, and **create a new release on GitHub**, which will automatically trigger the workflow to publish the new release to [PyPI](https://pypi.org/project/rdflib-endpoint/).
+3. Commit the new version, and **create a new release on GitHub**, which will automatically trigger the workflow to publish the new release to [PyPI](https://pypi.org/project/pycottas-endpoint/).
 
 You can also manually trigger the workflow from the Actions tab in your GitHub repository webpage if needed.

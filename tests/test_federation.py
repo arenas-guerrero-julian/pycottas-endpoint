@@ -70,8 +70,8 @@ def service_url():
 
 
 # def test_graphdb_custom_concat(service_url, graphdb):
-#     print(concat_select.format(rdflib_endpoint_url=service_url))
-#     response = httpx.get(graphdb, params={"query": concat_select.format(rdflib_endpoint_url=service_url)}, headers={"accept": "application/json"})
+#     print(concat_select.format(pycottas_endpoint_url=service_url))
+#     response = httpx.get(graphdb, params={"query": concat_select.format(pycottas_endpoint_url=service_url)}, headers={"accept": "application/json"})
 #     print(response.text)
 #     assert response.status_code == 200
 #     assert response.json()["results"]["bindings"][0]["concat"]["value"] == "Firstlast"
@@ -93,8 +93,8 @@ def service_url():
 
 
 # def test_blazegraph_custom_concat(service_url, blazegraph):
-#     print(concat_select.format(rdflib_endpoint_url=service_url))
-#     response = httpx.get(blazegraph, params={"query": concat_select.format(rdflib_endpoint_url=service_url)}, headers={"accept": "application/json"})
+#     print(concat_select.format(pycottas_endpoint_url=service_url))
+#     response = httpx.get(blazegraph, params={"query": concat_select.format(pycottas_endpoint_url=service_url)}, headers={"accept": "application/json"})
 #     print(response.text)
 #     assert response.status_code == 200
 #     assert response.json()["results"]["bindings"][0]["concat"]["value"] == "Firstlast"
@@ -113,7 +113,7 @@ SELECT ?concat WHERE {
 
 concat_select = """PREFIX myfunctions: <https://w3id.org/sparql-functions/>
 SELECT ?concat WHERE {{
-    SERVICE <{rdflib_endpoint_url}> {{
+    SERVICE <{pycottas_endpoint_url}> {{
         BIND(myfunctions:custom_concat("First", "last") AS ?concat)
     }}
 }}"""

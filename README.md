@@ -1,105 +1,64 @@
 <div align="center">
 
-# 💫 SPARQL endpoint for RDFLib
+# 💫 SPARQL endpoint for COTTAS files
 
-[![PyPI - Version](https://img.shields.io/pypi/v/rdflib-endpoint.svg?logo=pypi&label=PyPI&logoColor=silver)](https://pypi.org/project/rdflib-endpoint/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rdflib-endpoint.svg?logo=python&label=Python&logoColor=silver)](https://pypi.org/project/rdflib-endpoint/)
+[![PyPI - Version](https://img.shields.io/pypi/v/pycottas-endpoint.svg?logo=pypi&label=PyPI&logoColor=silver)](https://pypi.org/project/pycottas-endpoint/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pycottas-endpoint.svg?logo=python&label=Python&logoColor=silver)](https://pypi.org/project/pycottas-endpoint/)
 
-[![Test package](https://github.com/vemonet/rdflib-endpoint/actions/workflows/test.yml/badge.svg)](https://github.com/vemonet/rdflib-endpoint/actions/workflows/test.yml)
-[![Publish package](https://github.com/vemonet/rdflib-endpoint/actions/workflows/release.yml/badge.svg)](https://github.com/vemonet/rdflib-endpoint/actions/workflows/release.yml)
-[![Coverage Status](https://coveralls.io/repos/github/vemonet/rdflib-endpoint/badge.svg?branch=main)](https://coveralls.io/github/vemonet/rdflib-endpoint?branch=main)
+[![Test package](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/test.yml/badge.svg)](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/test.yml)
+[![Publish package](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/release.yml/badge.svg)](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/release.yml)
+[![Coverage Status](https://coveralls.io/repos/github/arenas-guerrero-julian/pycottas-endpoint/badge.svg?branch=main)](https://coveralls.io/github/arenas-guerrero-julian/pycottas-endpoint?branch=main)
 
-[![license](https://img.shields.io/pypi/l/rdflib-endpoint.svg?color=%2334D058)](https://github.com/vemonet/rdflib-endpoint/blob/main/LICENSE.txt)
+[![license](https://img.shields.io/pypi/l/pycottas-endpoint.svg?color=%2334D058)](https://github.com/arenas-guerrero-julian/pycottas-endpoint/blob/main/LICENSE.txt)
 [![types - Mypy](https://img.shields.io/badge/types-mypy-blue.svg)](https://github.com/python/mypy)
 
 </div>
 
-`rdflib-endpoint` is a SPARQL endpoint based on RDFLib to **easily serve RDF files locally**, machine learning models, or any other logic implemented in Python via **custom SPARQL functions**.
-
-It aims to enable python developers to easily deploy functions that can be queried in a federated fashion using SPARQL. For example: using a python function to resolve labels for specific identifiers, or run a classifier given entities retrieved using a `SERVICE` query to another SPARQL endpoint.
-
-> Feel free to create an [issue](/issues), or send a pull request if you are facing issues or would like to see a feature implemented.
-
 ## ℹ️ How it works
 
-`rdflib-endpoint` can be used directly from the terminal to quickly serve RDF files through a SPARQL endpoint automatically deployed locally.
+`pycottas-endpoint` can be used directly from the terminal to quickly serve COTTAS files through a SPARQL endpoint automatically deployed locally.
 
-It can also be used to define custom SPARQL functions: the user defines and registers custom SPARQL functions, and/or populate the RDFLib Graph using Python, then the endpoint is started using `uvicorn`.
+It can also be used to define custom SPARQL functions: the user defines and registers custom SPARQL functions, then the endpoint is started using `uvicorn`.
 
-The deployed SPARQL endpoint can be used as a `SERVICE` in a federated SPARQL query from regular triplestores SPARQL endpoints. Tested on OpenLink Virtuoso (Jena based) and Ontotext GraphDB (RDF4J based). The endpoint is CORS enabled by default to enable querying it from client JavaScript (can be turned off).
-
-> Built with [RDFLib](https://github.com/RDFLib/rdflib) and [FastAPI](https://fastapi.tiangolo.com/).
+The deployed SPARQL endpoint can be used as a `SERVICE` in a federated SPARQL query from regular triplestores SPARQL endpoints. The endpoint is CORS enabled by default to enable querying it from client JavaScript (can be turned off).
 
 ## 📦️ Installation
 
-This package requires Python >=3.8, install it  from [PyPI](https://pypi.org/project/rdflib-endpoint/) with:
+Install from [PyPI](https://pypi.org/project/pycottas-endpoint/) with:
 
 ```shell
-pip install rdflib-endpoint
+pip install pycottas-endpoint
 ```
 
 The `uvicorn` and `gunicorn` dependencies are not included by default, if you want to install them use the optional dependency `web`:
 
 ```bash
-pip install "rdflib-endpoint[web]"
+pip install "pycottas-endpoint[web]"
 ```
 
-If you want to use `rdlib-endpoint` as a CLI you can install with the optional dependency `cli`:
+If you want to use `pycottas-endpoint` as a CLI you can install with the optional dependency `cli`:
 
 ```bash
-pip install "rdflib-endpoint[cli]"
+pip install "pycottas-endpoint[cli]"
 ```
 
-If you want to use [oxigraph](https://github.com/oxigraph/oxigraph) as backend triplestore you can install with the optional dependency `oxigraph`:
+## ⚡️ Quickly serve COTTAS files through a SPARQL endpoint
+
+Use `pycottas-endpoint` as a command line interface (CLI) in your terminal to quickly serve one or multiple RDF files as a SPARQL endpoint.
+
+You can use wildcard to provide multiple files, for example to serve all COTTAS files in the current directory you could run:
 
 ```bash
-pip install "rdflib-endpoint[cli,oxigraph]"
-```
-
-> [!WARNING]
-> Oxigraph and `oxrdflib` do not support custom functions, so it can be only used to deploy graphs without custom functions.
-
-## ⌨️ Use the CLI
-
-`rdflib-endpoint` can be used from the command line interface to perform basic utility tasks, such as serving or converting RDF files locally.
-
-Make sure you installed `rdflib-endpoint` with the `cli` optional dependencies:
-
-```bash
-pip install "rdflib-endpoint[cli]"
-```
-
-### ⚡️ Quickly serve RDF files through a SPARQL endpoint
-
-Use `rdflib-endpoint` as a command line interface (CLI) in your terminal to quickly serve one or multiple RDF files as a SPARQL endpoint.
-
-You can use wildcard and provide multiple files, for example to serve all turtle, JSON-LD and nquads files in the current folder you could run:
-
-```bash
-rdflib-endpoint serve *.ttl *.jsonld *.nq
+pycottas-endpoint serve '*.cottas'
 ```
 
 > Then access the YASGUI SPARQL editor on http://localhost:8000
 
-If you installed with the Oxigraph optional dependency you can use it as backend triplestore, it is faster and supports some functions that are not supported by the RDFLib query engine (such as `COALESCE()`):
-
-```bash
-rdflib-endpoint serve --store Oxigraph "*.ttl" "*.jsonld" "*.nq"
-```
-
-### 🔄 Convert RDF files to another format
-
-`rdflib-endpoint` can also be used to quickly merge and convert files from multiple formats to a specific format:
-
-```bash
-rdflib-endpoint convert "*.ttl" "*.jsonld" "*.nq" --output "merged.trig"
-```
-
 ## ✨ Deploy your SPARQL endpoint
 
-`rdflib-endpoint` enables you to easily define and deploy SPARQL endpoints based on RDFLib Graph, and Dataset. Additionally it provides helpers to defines custom functions in the endpoint.
+`pycottas-endpoint` enables you to easily define and deploy SPARQL endpoints based on RDFLib. Additionally it provides helpers to defines custom functions in the endpoint.
 
-Checkout the [`example`](https://github.com/vemonet/rdflib-endpoint/tree/main/example) folder for a complete working app example to get started, including a docker deployment. A good way to create a new SPARQL endpoint is to copy this `example` folder, and start from it.
+Checkout the [`example`](https://github.com/arenas-guerrero-julian/pycottas-endpoint/tree/main/example) folder for a complete working app example to get started, including a docker deployment. A good way to create a new SPARQL endpoint is to copy this `example` folder, and start from it.
 
 ### 🚨 Deploy as a standalone API
 
@@ -120,7 +79,7 @@ app = SparqlEndpoint(
     cors_enabled=True,
     # Metadata used for the SPARQL service description and Swagger UI:
     title="SPARQL endpoint for RDFLib graph",
-    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/vemonet/rdflib-endpoint)",
+    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
     version="0.1.0",
     public_url='https://your-endpoint-url/',
     # Example query displayed in YASGUI default tab
@@ -165,7 +124,7 @@ sparql_router = SparqlRouter(
     path="/",
     # Metadata used for the SPARQL service description and Swagger UI:
     title="SPARQL endpoint for RDFLib graph",
-    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/vemonet/rdflib-endpoint)",
+    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
     version="0.1.0",
     public_url='https://your-endpoint-url/',
 )
@@ -223,7 +182,7 @@ app = SparqlEndpoint(
     cors_enabled=True,
     # Metadata used for the SPARQL service description and Swagger UI:
     title="SPARQL endpoint for RDFLib graph",
-    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/vemonet/rdflib-endpoint)",
+    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
     version="0.1.0",
     public_url='https://your-endpoint-url/',
     # Example queries displayed in the Swagger UI to help users try your function
@@ -279,14 +238,10 @@ uv run uvicorn main:app --reload
 
 > Checkout in the `example/README.md` for more details, such as deploying it with docker.
 
-## 📂 Projects using rdflib-endpoint
-
-Here are some projects using `rdflib-endpoint` to deploy custom SPARQL endpoints with python:
-
-* [The Bioregistry](https://bioregistry.io/), an open source, community curated registry, meta-registry, and compact identifier resolver.
-* [proycon/codemeta-server](https://github.com/proycon/codemeta-server), server for codemeta, in memory triple store, SPARQL endpoint and simple web-based visualisation for end-user.
-* [AKSW/sparql-file](https://github.com/AKSW/sparql-file), serve a RDF file as an RDFLib Graph through a SPARQL endpoint.
-
 ## 🛠️ Contributing
 
-To run the project in development and make a contribution checkout the [contributing page](https://github.com/vemonet/rdflib-endpoint/blob/main/CONTRIBUTING.md).
+To run the project in development and make a contribution checkout the [contributing page](https://github.com/arenas-guerrero-julian/pycottas-endpoint/blob/main/CONTRIBUTING.md).
+
+## 🏅 Ackknowledgements
+
+`pycottas-endpoint` is a fork from [`rdflib-endpoint`](https://github.com/vemonet/rdflib-endpoint) by [Vincent Emonet](https://github.com/vemonet/rdflib-endpoint).

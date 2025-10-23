@@ -1,6 +1,6 @@
 import pytest
 
-import rdflib_endpoint.sparql_router
+import pycottas_endpoint.sparql_router
 
 accept_cases = [
     ("text/xml", "text/xml"),
@@ -17,5 +17,5 @@ accept_cases = [
 
 @pytest.mark.parametrize("accept,expected", accept_cases)
 def test_accept_preference(accept, expected):
-    pref = rdflib_endpoint.sparql_router.parse_accept_header(accept)
+    pref = pycottas_endpoint.sparql_router.parse_accept_header(accept)
     assert pref[0] == expected

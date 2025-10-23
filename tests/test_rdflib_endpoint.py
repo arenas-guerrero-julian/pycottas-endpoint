@@ -3,8 +3,8 @@ from example.main import custom_concat
 from fastapi.testclient import TestClient
 from rdflib import RDFS, Graph, Literal, URIRef
 
-from rdflib_endpoint import SparqlEndpoint
-from rdflib_endpoint.sparql_router import SD
+from pycottas_endpoint import SparqlEndpoint
+from pycottas_endpoint.sparql_router import SD
 
 # graph = Dataset(default_union=False)
 graph = Graph()

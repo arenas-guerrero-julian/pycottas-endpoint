@@ -1117,7 +1117,7 @@ wheels = [
 ]
 
 [[package]]
-name = "rdflib-endpoint"
+name = "pycottas-endpoint"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },

@@ -9,7 +9,7 @@ from rdflib import Graph
 
 # from testcontainers.core.container import DockerContainer
 # from testcontainers.core.waiting_utils import wait_for_logs
-from rdflib_endpoint import SparqlEndpoint
+from pycottas_endpoint import SparqlEndpoint
 
 # https://github.com/biopragmatics/curies/blob/main/tests/test_federated_sparql.py
 

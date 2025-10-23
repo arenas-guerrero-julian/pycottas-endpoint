@@ -17,7 +17,7 @@ from rdflib.plugins.sparql.parserutils import CompValue
 from rdflib.plugins.sparql.sparql import QueryContext, SPARQLError
 from rdflib.query import Processor
 
-from rdflib_endpoint.utils import (
+from pycottas_endpoint.utils import (
     API_RESPONSES,
     CONTENT_TYPE_TO_RDFLIB_FORMAT,
     FORMATS,
@@ -294,7 +294,7 @@ class SparqlRouter(APIRouter):
         """Serve YASGUI interface"""
         import json
 
-        with resources.open_text("rdflib_endpoint", "yasgui.html") as f:
+        with resources.open_text("pycottas_endpoint", "yasgui.html") as f:
             html_str = f.read()
         html_str = html_str.replace("$TITLE", self.title)
         html_str = html_str.replace("$DESCRIPTION", self.description)

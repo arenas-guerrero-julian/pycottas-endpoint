@@ -6,8 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from rdflib import Dataset, Graph
 from rdflib.query import Processor
 
-from rdflib_endpoint.sparql_router import SparqlRouter
-from rdflib_endpoint.utils import Defaults, QueryExample
+from pycottas_endpoint.sparql_router import SparqlRouter
+from pycottas_endpoint.utils import Defaults, QueryExample
 
 __all__ = [
     "SparqlEndpoint",

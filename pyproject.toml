@@ -4,21 +4,23 @@ build-backend = "hatchling.build"
 
 [project]
 requires-python = ">=3.8"
-name = "rdflib-endpoint"
-description = "A package to deploy SPARQL endpoint to serve local RDF files, machine learning models, or any other logic implemented in Python, using RDFLib and FastAPI."
+name = "pycottas-endpoint"
+description = "A package to deploy SPARQL endpoint to serve local COTTAS files, using RDFLib and FastAPI."
 readme = "README.md"
 license = { file = "LICENSE.txt" }
 authors = [
     { name = "Vincent Emonet", email = "vincent.emonet@gmail.com" },
+    { name = "Julián Arenas-Guerrero", email = "julian.arenas.guerrero@upm.es" },
 ]
 maintainers = [
     { name = "Vincent Emonet", email = "vincent.emonet@gmail.com" },
+    { name = "Julián Arenas-Guerrero", email = "julian.arenas.guerrero@upm.es" },
 ]
 keywords = [
     "Python",
     "SPARQL",
     "RDF",
-    "RDFLib",
+    "COTTAS",
     "endpoint",
 ]
 classifiers = [
@@ -35,34 +37,32 @@ classifiers = [
 dynamic = ["version"]
 
 dependencies = [
-    "rdflib >=6.0.0",
-    "fastapi >=0.51.0",
+    "rdflib>=6.0.0, <8.0.0",
+    "fastapi>=0.51.0, <2.0.0",
+    "pycottas>=1.0.0, <2.0.0",
 ]
 
 
 [project.scripts]
-rdflib-endpoint = "rdflib_endpoint.__main__:cli"
+pycottas-endpoint = "pycottas_endpoint.__main__:cli"
 
 
 [project.optional-dependencies]
 cli = [
-    "uvicorn[standard] >=0.12.0",
+    "uvicorn[standard]>=0.12.0",
     "click",
 ]
 web = [
-    "uvicorn[standard] >=0.12.0",
-]
-oxigraph = [
-    "oxrdflib",
+    "uvicorn[standard]>=0.12.0",
 ]
 
 
 [dependency-groups]
 dev = [
-    "pytest >=8.3.4",
-    "pytest-cov >=5.0.0",
-    "ruff >=0.11.7",
-    "mypy >=1.4.1",
+    "pytest>=8.3.4",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.11.7",
+    "mypy>=1.4.1",
     "pre-commit",
     "requests",
     "httpx",
@@ -75,11 +75,11 @@ dev = [
 
 
 [project.urls]
-Homepage = "https://github.com/vemonet/rdflib-endpoint"
-Documentation = "https://github.com/vemonet/rdflib-endpoint"
-History = "https://github.com/vemonet/rdflib-endpoint/releases"
-Tracker = "https://github.com/vemonet/rdflib-endpoint/issues"
-Source = "https://github.com/vemonet/rdflib-endpoint"
+Homepage = "https://github.com/arenas-guerrero-julian/pycottas-endpoint"
+Documentation = "https://github.com/arenas-guerrero-julian/pycottas-endpoint"
+History = "https://github.com/arenas-guerrero-julian/pycottas-endpoint/releases"
+Tracker = "https://github.com/arenas-guerrero-julian/pycottas-endpoint/issues"
+Source = "https://github.com/arenas-guerrero-julian/pycottas-endpoint"
 
 
 # ENVIRONMENTS AND SCRIPTS, not used anymore, checkout scripts/ folder
@@ -118,14 +118,14 @@ python = ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
 # TOOLS
 [tool.hatch.build.targets.wheel]
-packages = ["src/rdflib_endpoint"]
+packages = ["src/pycottas_endpoint"]
 
 [tool.hatch.version]
-path = "src/rdflib_endpoint/__init__.py"
+path = "src/pycottas_endpoint/__init__.py"
 
 
 [tool.coverage.run]
-source = ["src/rdflib_endpoint"]
+source = ["src/pycottas_endpoint"]
 branch = false
 
 [tool.coverage.report]

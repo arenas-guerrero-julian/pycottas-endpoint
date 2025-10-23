@@ -10,10 +10,10 @@ class Defaults:
     """Default configuration values for the SPARQL endpoint."""
 
     title: str = "SPARQL endpoint for RDFLib graph"
-    description: str = "A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/vemonet/rdflib-endpoint)"
+    description: str = "A SPARQL endpoint to serve COTTAS files. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)"
     version: str = "0.1.0"
     public_url: str = "https://your-endpoint/sparql"
-    favicon: str = "https://rdflib.readthedocs.io/en/stable/_static/RDFlib.png"
+    favicon: str = "https://github.com/arenas-guerrero-julian/pycottas/blob/main/logo/logo.png"
     example: str = """\
 PREFIX myfunctions: <https://w3id.org/sparql-functions/>
 

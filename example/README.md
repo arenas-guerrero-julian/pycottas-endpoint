@@ -18,16 +18,6 @@ SELECT ?concat ?concatLength WHERE {
 }
 ```
 
-### Insert data
-
-Insert data in the in-memory rdflib graph:
-
-```sparql
-INSERT DATA {
-    <http://subject> <http://predicate> <http://object> .
-}
-```
-
 ## ✨️ Run
 
 > Requirements: [`uv`](https://docs.astral.sh/uv/getting-started/installation/) to easily handle scripts and virtual environments.

@@ -30,12 +30,19 @@ def run_serve(files: List[str], host: str, port: int, store: str = "default", en
         store = store.capitalize()
 
 
-    file = files[0]
+    cottas_files = [f for f in files if f.endswith(".cottas")]
 
-    # Si es un archivo .cottas
-    if file.lower().endswith(".cottas"):
-        click.echo(click.style("INFO", fg="green") + f": 📦 Cargando archivo COTTAS → {file}")
+    # Caso 1: hay exactamente un archivo .cottas
+    if len(cottas_files) == 1:
+        file = cottas_files[0]
+        click.echo(click.style("INFO", fg="green") + f": 📦 Loading COTTAS file → {file}")
         g = Graph(store=pycottas.COTTASStore(file))
+
+    # Caso 2: hay más de un archivo .cottas
+    elif len(cottas_files) > 1:
+        click.echo(click.style("ERROR", fg="red") + ": 🚫 you can't load multiples '.cottas' at the same time. Use rdf2cottas to compress all in just one file.")
+        sys.exit(1)
+
 
     # Si es otro formato RDF
     else:

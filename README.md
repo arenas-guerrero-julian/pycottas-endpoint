@@ -2,16 +2,6 @@
 
 # 💫 SPARQL endpoint for COTTAS files
 
-[![PyPI - Version](https://img.shields.io/pypi/v/pycottas-endpoint.svg?logo=pypi&label=PyPI&logoColor=silver)](https://pypi.org/project/pycottas-endpoint/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pycottas-endpoint.svg?logo=python&label=Python&logoColor=silver)](https://pypi.org/project/pycottas-endpoint/)
-
-[![Test package](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/test.yml/badge.svg)](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/test.yml)
-[![Publish package](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/release.yml/badge.svg)](https://github.com/arenas-guerrero-julian/pycottas-endpoint/actions/workflows/release.yml)
-[![Coverage Status](https://coveralls.io/repos/github/arenas-guerrero-julian/pycottas-endpoint/badge.svg?branch=main)](https://coveralls.io/github/arenas-guerrero-julian/pycottas-endpoint?branch=main)
-
-[![license](https://img.shields.io/pypi/l/pycottas-endpoint.svg?color=%2334D058)](https://github.com/arenas-guerrero-julian/pycottas-endpoint/blob/main/LICENSE.txt)
-[![types - Mypy](https://img.shields.io/badge/types-mypy-blue.svg)](https://github.com/python/mypy)
-
 </div>
 
 `pycottas-endpoint` can be used directly from the terminal to quickly serve COTTAS files through a SPARQL endpoint automatically deployed locally.

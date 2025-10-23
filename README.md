@@ -242,6 +242,6 @@ uv run uvicorn main:app --reload
 
 To run the project in development and make a contribution checkout the [contributing page](https://github.com/arenas-guerrero-julian/pycottas-endpoint/blob/main/CONTRIBUTING.md).
 
-## 🏅 Ackknowledgements
+## 🏅 Acknowledgements
 
 `pycottas-endpoint` is a fork from [`rdflib-endpoint`](https://github.com/vemonet/rdflib-endpoint) by [Vincent Emonet](https://github.com/vemonet/rdflib-endpoint).

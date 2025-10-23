@@ -42,7 +42,7 @@ pip install "pycottas-endpoint[cli]"
 
 ## ⚡️ Quickly serve COTTAS files through a SPARQL endpoint
 
-Use `pycottas-endpoint` as a command line interface (CLI) in your terminal to quickly serve one or multiple RDF files as a SPARQL endpoint.
+Use `pycottas-endpoint` as a command line interface (CLI) in your terminal to quickly serve one or multiple COTTAS files as a SPARQL endpoint.
 
 You can use wildcard to provide multiple files, for example to serve all COTTAS files in the current directory you could run:
 

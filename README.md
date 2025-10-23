@@ -14,8 +14,6 @@
 
 </div>
 
-## ℹ️ How it works
-
 `pycottas-endpoint` can be used directly from the terminal to quickly serve COTTAS files through a SPARQL endpoint automatically deployed locally.
 
 It can also be used to define custom SPARQL functions: the user defines and registers custom SPARQL functions, then the endpoint is started using `uvicorn`.

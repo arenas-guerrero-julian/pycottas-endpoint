@@ -2,7 +2,7 @@ from example.main import app
 from fastapi.testclient import TestClient
 from rdflib import Graph
 
-from rdflib_endpoint.sparql_router import SD
+from pycottas_endpoint.sparql_router import SD
 
 # Use app defined in example folder
 endpoint = TestClient(app)

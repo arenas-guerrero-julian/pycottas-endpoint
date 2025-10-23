@@ -1,4 +1,4 @@
-# Federated query to rdflib-endpoint
+# Federated query to pycottas-endpoint
 
 To test it locally start the docker compose stack in this folder
 
@@ -8,7 +8,7 @@ Need to use the host from the docker network:
 
 ```sparql
 SELECT * WHERE {
-  SERVICE <http://rdflib-endpoint/> {
+  SERVICE <http://pycottas-endpoint/> {
       SELECT ?o WHERE {
         ?s ?p ?o .
       }
@@ -20,7 +20,7 @@ Local with FILTER:
 
 ```SPARQL
 SELECT * WHERE {
-  SERVICE <http://rdflib-endpoint/> {
+  SERVICE <http://pycottas-endpoint/> {
       SELECT ?o WHERE {
         VALUES ?s { <http://subject> }
         ?s ?p ?o .

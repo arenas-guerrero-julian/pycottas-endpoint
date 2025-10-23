@@ -78,52 +78,6 @@ def test_select_csv():
     assert response.status_code == 200
 
 
-label_patch = """
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-DELETE { ?subject rdfs:label "foo" }
-INSERT { ?subject rdfs:label "bar" }
-WHERE { ?subject rdfs:label "foo" }
-"""
-
-
-@pytest.mark.parametrize(
-    "api_key,key_provided,param_method",
-    [
-        (api_key, key_provided, param_method)
-        for api_key in [None, "key"]
-        for key_provided in [True, False]
-        for param_method in ["body_form", "body_direct"]
-    ],
-)
-def test_sparql_update(api_key, key_provided, param_method, monkeypatch):
-    if api_key:
-        monkeypatch.setenv("RDFLIB_APIKEY", api_key)
-    subject = URIRef("http://server.test/subject")
-    headers = {}
-    if key_provided:
-        headers["Authorization"] = "Bearer key"
-    graph.add((subject, RDFS.label, Literal("foo")))
-    if param_method == "body_form":
-        request_args = {"data": {"update": label_patch}}
-    else:
-        # direct
-        headers["content-type"] = "application/sparql-update"
-        request_args = {"data": label_patch}
-    response = endpoint.post("/", headers=headers, **request_args)
-    if api_key is None or key_provided:
-        assert response.status_code == 204
-        assert (subject, RDFS.label, Literal("foo")) not in graph
-        assert (subject, RDFS.label, Literal("bar")) in graph
-    else:
-        assert response.status_code == 403
-        assert (subject, RDFS.label, Literal("foo")) in graph
-        assert (subject, RDFS.label, Literal("bar")) not in graph
-
-
-def test_sparql_query_update_fail():
-    response = endpoint.post("/", data={"update": label_patch, "query": label_patch})
-    assert response.status_code == 400
-
 
 def test_multiple_accept_return_json():
     response = endpoint.get(

@@ -63,12 +63,12 @@ Checkout the [`example`](https://github.com/arenas-guerrero-julian/pycottas-endp
 Deploy your SPARQL endpoint as a standalone API:
 
 ```python
-from rdflib import Dataset
+from rdflib import Graph
 from rdflib_endpoint import SparqlEndpoint
+from pycottas import COTTASStore
 
-# Start the SPARQL endpoint based on a RDFLib Graph and register your custom functions
-g = Dataset()
-# TODO: Add triples in your graph
+# Start the SPARQL endpoint based on a RDFLib Graph backed by pycottas and register your custom functions
+g = Graph(store=COTTASStore('my_file.cottas'))
 
 # Then use either SparqlEndpoint or SparqlRouter, they take the same arguments
 app = SparqlEndpoint(
@@ -76,8 +76,8 @@ app = SparqlEndpoint(
     path="/",
     cors_enabled=True,
     # Metadata used for the SPARQL service description and Swagger UI:
-    title="SPARQL endpoint for RDFLib graph",
-    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
+    title="SPARQL endpoint for COTTAS files",
+    description="SPARQL endpoint for COTTAS files. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
     version="0.1.0",
     public_url='https://your-endpoint-url/',
     # Example query displayed in YASGUI default tab
@@ -115,14 +115,15 @@ Deploy your SPARQL endpoint as an `APIRouter` to include in an existing `FastAPI
 from fastapi import FastAPI
 from rdflib import Dataset
 from rdflib_endpoint import SparqlRouter
+from pycottas import COTTASStore
 
-g = Dataset()
+g = Graph(store=COTTASStore('my_file.cottas'))
 sparql_router = SparqlRouter(
     graph=g,
     path="/",
     # Metadata used for the SPARQL service description and Swagger UI:
-    title="SPARQL endpoint for RDFLib graph",
-    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
+    title="SPARQL endpoint for COTTAS files",
+    description="SPARQL endpoint for COTTAS files. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
     version="0.1.0",
     public_url='https://your-endpoint-url/',
 )
@@ -144,6 +145,7 @@ import rdflib
 from rdflib import Dataset
 from rdflib.plugins.sparql.evalutils import _eval
 from rdflib_endpoint import SparqlEndpoint
+from pycottas import COTTASStore
 
 def custom_concat(query_results, ctx, part, eval_part):
     """Concat 2 strings in the 2 senses and return the length as additional Length variable
@@ -167,8 +169,8 @@ def custom_concat(query_results, ctx, part, eval_part):
         }))
     return query_results, ctx, part, eval_part
 
-# Start the SPARQL endpoint based on a RDFLib Graph and register your custom functions
-g = Dataset(default_union=True)
+# Start the SPARQL endpoint based on a RDFLib Graph backed by pycottas and register your custom functions
+g = Graph(store=COTTASStore('my_file.cottas'))
 # Use either SparqlEndpoint or SparqlRouter, they take the same arguments
 app = SparqlEndpoint(
     graph=g,
@@ -179,8 +181,8 @@ app = SparqlEndpoint(
     },
     cors_enabled=True,
     # Metadata used for the SPARQL service description and Swagger UI:
-    title="SPARQL endpoint for RDFLib graph",
-    description="A SPARQL endpoint to serve machine learning models, or any other logic implemented in Python. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
+    title="SPARQL endpoint for COTTAS files",
+    description="SPARQL endpoint for COTTAS files. \n[Source code](https://github.com/arenas-guerrero-julian/pycottas-endpoint)",
     version="0.1.0",
     public_url='https://your-endpoint-url/',
     # Example queries displayed in the Swagger UI to help users try your function
@@ -202,6 +204,7 @@ Refer to the [RDFLib documentation](https://rdflib.readthedocs.io/en/stable/_mod
 import rdflib
 from rdflib.plugins.sparql.evaluate import evalBGP
 from rdflib.namespace import FOAF, RDF, RDFS
+from pycottas import COTTASStore
 
 def custom_eval(ctx, part):
     """Rewrite triple patterns to get super-classes"""
